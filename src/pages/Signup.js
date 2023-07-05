@@ -1,8 +1,13 @@
 import React, { useState,useEffect } from 'react';
 // import { useRegisterUser } from '../features/auth/authActions';
 import { useRegisterUserMutation } from '../app/services/auth/authServices';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  const {user}=useSelector(state=>state.auth);
+  const navigate=useNavigate();
   const [RegisterMutation]=useRegisterUserMutation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,6 +44,9 @@ const Signup = () => {
   };
 
   useEffect(() => {
+    if(user){
+      navigate('/user-profile')
+    }
     return () => {
       clearTimeout(clearRegistrationStatus);
     };
@@ -63,6 +71,7 @@ const Signup = () => {
           </div>
           <button type="submit">Signup</button>
         </form>
+        <div>Already have an account?<span> <NavLink to='/login'>Login</NavLink></span></div>
     </div>
   );
 };
