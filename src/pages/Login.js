@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 // import { useLoginUser } from '../features/auth/authActions';
 import { useUserLoginMutation } from '../app/services/auth/authServices';
 import { loginUser } from '../features/auth/authActions';
+import { NavLink } from 'react-router-dom';
 
 
 const Login = () => {
@@ -50,10 +51,7 @@ const Login = () => {
   return (
     <div className='form_container'>
       <h2>Login</h2>
-      {/* {isError && <p>Error occurred during login.</p>}
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : ( */}
+      
         <form onSubmit={handleLogin}>
           <div>
             <label>Email:</label>
@@ -65,7 +63,7 @@ const Login = () => {
           </div>
           <button type="submit">Login</button>
         </form>
-      {/* )} */}
+        <div>Don't have an account?<span> <NavLink to='/register'>Register</NavLink></span></div>
     </div>
   );
 };
